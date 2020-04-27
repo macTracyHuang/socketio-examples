@@ -18,7 +18,7 @@
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
-var audioContext = new AudioContext();
+
 var audioInput = null,
     realAudioInput = null,
     inputPoint = null,
@@ -36,6 +36,7 @@ socketio.on('add-wavefile', function(url) {
 });
 
 function toggleRecording( e ) {
+    var audioContext = new AudioContext();
     if (e.classList.contains('recording')) {
         // stop recording
         e.classList.remove('recording');
@@ -79,7 +80,7 @@ function updateAnalysers(time) {
         var numBars = Math.round(canvasWidth / SPACING);
         var freqByteData = new Uint8Array(analyserNode.frequencyBinCount);
 
-        analyserNode.getByteFrequencyData(freqByteData); 
+        analyserNode.getByteFrequencyData(freqByteData);
 
         analyserContext.clearRect(0, 0, canvasWidth, canvasHeight);
         analyserContext.fillStyle = '#F6D565';
@@ -99,7 +100,7 @@ function updateAnalysers(time) {
             analyserContext.fillRect(i * SPACING, canvasHeight, BAR_WIDTH, -magnitude);
         }
     }
-    
+
     rafID = window.requestAnimationFrame( updateAnalysers );
 }
 
