@@ -6,10 +6,10 @@ import json
 import os
 import uuid
 from flask import Blueprint, current_app, render_template
-from socketio_examples import socketio
+from createapp import socketio
 
-bp = Blueprint('uploads', __name__, static_folder='static',
-              template_folder='templates')
+bp = Blueprint(
+    'uploads', __name__, static_folder='static', template_folder='templates')
 
 
 @bp.route('/')

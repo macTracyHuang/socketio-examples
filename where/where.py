@@ -4,10 +4,10 @@ Shows a live map where participants can add themselves.
 """
 from flask import Blueprint, current_app, url_for, render_template, request
 from flask_socketio import emit
-from socketio_examples import socketio
+from createapp import socketio
 
-bp = Blueprint('where', __name__, static_folder='static',
-              template_folder='templates')
+bp = Blueprint(
+    'where', __name__, static_folder='static', template_folder='templates')
 pins = {}
 
 

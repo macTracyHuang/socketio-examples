@@ -5,10 +5,11 @@ Implements a simple chat server.
 from flask import Blueprint, render_template, request, session, url_for, \
     current_app
 from flask_socketio import emit
-from socketio_examples import socketio
+from createapp import socketio
 
-bp = Blueprint('chat', __name__, static_folder='static',
-               template_folder='templates')
+
+bp = Blueprint(
+    'chat', __name__, static_folder='static', template_folder='templates')
 
 
 @bp.route('/')

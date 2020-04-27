@@ -2,12 +2,9 @@
 
 Live polling of an audience.
 """
-import json
-import os
-import uuid
 from flask import Blueprint, current_app, render_template, url_for, session
 from flask_socketio import emit
-from socketio_examples import socketio
+from createapp import socketio
 
 bp = Blueprint('polls', __name__, static_folder='static',
                template_folder='templates')
@@ -21,7 +18,7 @@ class PollTracker(object):
                       'q3': [0, 0, 0],
                       'q4': [0, 0, 0, 0, 0]}
         self.dirty = False
-    
+
     def add_vote(self, question, answer):
         """Register a new vote."""
         self.polls[question][answer] += 1
@@ -41,6 +38,7 @@ class PollTracker(object):
     def set_dirty(self):
         """Force an update by setting the dirty flag."""
         self.dirty = True
+
 
 tally = PollTracker()
 
@@ -95,7 +93,7 @@ def votes(votes):
     for question, answer in session['votes'].items():
         tally.remove_vote(question, answer)
     # register the new votes
-    for question, answer in votes.items():        
+    for question, answer in votes.items():
         tally.add_vote(question, answer)
     session['votes'] = votes
 
@@ -115,5 +113,6 @@ def update_task():
             # broadcast the results to all connected admins
             socketio.emit('update-charts', results, namespace='/polls-admin')
         socketio.sleep(5)
+
 
 socketio.start_background_task(update_task)
