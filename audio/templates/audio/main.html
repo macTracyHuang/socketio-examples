@@ -18,9 +18,10 @@
     </div>
   </div>
   <div id="controls">
-    <img id="record" src="{{ url_for('audio.static', filename='audio/mic128.png') }}" onclick="toggleRecording(this);">
+    <button id="record" onclick="toggleRecording(this);">Start</button>
+    <!-- <img id="record" src="{{ url_for('audio.static', filename='audio/mic128.png') }}" "> -->
   </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.slim.js"></script>
+  <script src=" https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.slim.js"></script>
   <script src="{{ url_for('audio.static', filename='audio/main.js') }}"></script>
 </body>
 
