@@ -15,9 +15,15 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
 window.onload = () => {
+  try {
+    // Fix up for prefixing
+    window.AudioContext = window.AudioContext||window.webkitAudioContext;
+  }
+  catch(e) {
+    alert('Web Audio API is not supported in this browser');
+  }
   initAudio();
 }
 
@@ -110,6 +116,7 @@ function toggleRecording( e ) {
         recording = false;
         socketio.emit('end-recording');
     } else {
+        alert('start')
         // start recording
         e.classList.add('recording');
         recording = true;
