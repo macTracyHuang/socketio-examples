@@ -25,6 +25,7 @@ window.onload = () => {
     alert('Web Audio API is not supported in this browser');
   }
   initAudio();
+
 }
 
 
@@ -105,7 +106,7 @@ var first = true
 function toggleRecording( e ) {
     if (first){
       var audioContext = new AudioContext();
-      navigator.getUserMedia({audio: true}, gotStream, function(e) {
+      navigator.mediaDevices.getUserMedia({audio: true}, gotStream, function(e) {
           alert('Error getting audio');
           console.log(e);
       });
@@ -181,10 +182,11 @@ document.addEventListener("DOMContentLoaded",function(){
 });
 
 function initAudio() {
-    if (!navigator.getUserMedia)
-        navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+    if (!navigator.mediaDevices.getUserMedia)
+        navigator.mediaDevices.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
     if (!navigator.cancelAnimationFrame)
         navigator.cancelAnimationFrame = navigator.webkitCancelAnimationFrame || navigator.mozCancelAnimationFrame;
     if (!navigator.requestAnimationFrame)
         navigator.requestAnimationFrame = navigator.webkitRequestAnimationFrame || navigator.mozRequestAnimationFrame;
+    console.log('initialized');
 }
