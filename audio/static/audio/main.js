@@ -175,7 +175,7 @@ function toggleRecording( e ) {
 
 document.addEventListener("DOMContentLoaded",function(){
     document.querySelector('#record').onclick = () =>{
-      alert('Click');
+      toggleRecording(document.querySelector('#record'));
     }
     //here code
 });
