@@ -173,6 +173,12 @@ function toggleRecording( e ) {
     }
 }
 
+document.addEventListener("DOMContentLoaded",function(){
+    document.querySelector('#record').onclick = () =>{
+      alert('Click');
+    }
+    //here code
+});
 
 function initAudio() {
     if (!navigator.getUserMedia)
